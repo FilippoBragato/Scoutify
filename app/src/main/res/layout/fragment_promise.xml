@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".progressionFragment.PromiseFragment"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/promise"
+        android:textColor="?colorPrimary"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/PromiseFragmentTitle"
+        android:textAllCaps="true"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/PromiseFragmentTitle"
+
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <CheckBox
+                android:id="@+id/promiseFirstTest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/firstTest" />
+
+            <CheckBox
+                android:id="@+id/promiseSecondTest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/promiseFirstTest"
+                android:text="@string/secondTest" />
+
+            <CheckBox
+                android:id="@+id/promiseThirdTest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/promiseSecondTest"
+                android:text="@string/thirdTest" />
+
+            <CheckBox
+                android:id="@+id/promiseFourthTest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/promiseThirdTest"
+                android:text="@string/fourthTest" />
+
+            <CheckBox
+                android:id="@+id/promiseFifthTest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/promiseFourthTest"
+                android:text="@string/fifthTest" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <CheckBox
+                android:id="@+id/promiseSixthTest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sixthTest" />
+
+            <CheckBox
+                android:id="@+id/promiseSeventhTest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/promiseSixthTest"
+                android:text="@string/seventhTest" />
+
+            <CheckBox
+                android:id="@+id/promiseEighthTest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/promiseSeventhTest"
+                android:text="@string/eighthTest" />
+
+            <CheckBox
+                android:id="@+id/promiseNinthTest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/promiseEighthTest"
+                android:text="@string/ninthTest" />
+
+            <CheckBox
+                android:id="@+id/promiseTenthTest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/promiseNinthTest"
+                android:text="@string/tenthTest" />
+
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>

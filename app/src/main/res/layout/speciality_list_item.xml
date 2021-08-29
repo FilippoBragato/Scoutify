@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/placeholder_specialityName"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:id="@+id/specialityName"
+        android:textColor="?colorPrimaryVariant"
+        />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/specialityName"
+        >
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/checkboxFirstTest"
+            android:text="@string/placeholder_firstTest"
+            />
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/checkboxSecondTest"
+            android:layout_below="@id/checkboxFirstTest"
+            android:text="@string/placeholder_secondTest"
+            />
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/checkboxThirdTest"
+            android:layout_below="@id/checkboxSecondTest"
+            android:text="@string/placeholder_thirdTest"
+            />
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/checkboxFourthTest"
+            android:layout_below="@id/checkboxThirdTest"
+            android:text="@string/placeholder_fourthTest"
+            />
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/checkboxFreeTest"
+            android:layout_below="@id/checkboxFourthTest"
+            android:text="@string/freeTestLong"
+            />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

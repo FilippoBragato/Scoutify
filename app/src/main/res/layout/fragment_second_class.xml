@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".progressionFragment.SecondClassFragment"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/secondClass"
+        android:textColor="?colorPrimary"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/SecondClassFragmentTitle"
+        android:textAllCaps="true"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/SecondClassFragmentTitle"
+
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <CheckBox
+                android:id="@+id/secondFirstTest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/firstTest" />
+
+            <CheckBox
+                android:id="@+id/secondSecondTest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/secondFirstTest"
+                android:text="@string/secondTest" />
+
+            <CheckBox
+                android:id="@+id/secondThirdTest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/secondSecondTest"
+                android:text="@string/thirdTest" />
+
+            <CheckBox
+                android:id="@+id/secondFourthTest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/secondThirdTest"
+                android:text="@string/fourthTest" />
+
+            <CheckBox
+                android:id="@+id/secondFifthTest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/secondFourthTest"
+                android:text="@string/fifthTest" />
+            <CheckBox
+                android:id="@+id/secondSixthTest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sixthTest"
+                android:layout_below="@id/secondFifthTest"/>
+
+            <CheckBox
+                android:id="@+id/secondSeventhTest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/secondSixthTest"
+                android:text="@string/seventhTest" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+
+            <CheckBox
+                android:id="@+id/secondEighthTest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/eighthTest" />
+
+            <CheckBox
+                android:id="@+id/secondNinthTest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/secondEighthTest"
+                android:text="@string/ninthTest" />
+
+            <CheckBox
+                android:id="@+id/secondTenthTest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/secondNinthTest"
+                android:text="@string/tenthTest" />
+            <CheckBox
+                android:id="@+id/secondEleventhTest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/secondTenthTest"
+                android:text="@string/eleventhTest" />
+
+            <CheckBox
+                android:id="@+id/secondTwelfthTest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/secondEleventhTest"
+                android:text="@string/twelfthTest" />
+
+            <CheckBox
+                android:id="@+id/secondThirteenthTest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/secondTwelfthTest"
+                android:text="@string/freeTest" />
+
+
+
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>

@@ -1,0 +1,202 @@
+<resources>
+    <string name="app_name">Reparto</string>
+    <string name="placeholder_name">Name Surname</string>
+    <string name="placeholder_patrol">Wolf</string>
+    <string name="placeholder_summary">First class Scout with the specialities of cooker, stoker, pioneer and musician</string>
+    <string name="add_button_description">Add a new note</string>
+    <string name="lorem" translatable="false">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consectetur ante eu tincidunt iaculis. Praesent et lorem ex. Morbi id sodales ante. Cras auctor, lorem id interdum sollicitudin, felis arcu efficitur turpis, ac consequat mi diam ut ante. Donec elementum, massa at eleifend commodo, dui purus rhoncus ipsum, et lobortis odio orci in arcu. In ultricies mauris sed congue posuere. Cras egestas commodo semper. Nam sit amet egestas sem. Nullam sit amet velit lorem. In sem nisl, scelerisque sed eros eget, pretium convallis urna. Praesent condimentum non tortor at placerat. Pellentesque tincidunt gravida erat, nec tincidunt ligula tempus sit amet. Curabitur non mauris porta, scelerisque justo venenatis, consectetur sem. Aliquam ac lorem elit. Donec commodo, ex a dapibus aliquam, nibh lorem porttitor enim, at suscipit velit felis eu orci.</string>
+    <string name="placeholder_data">23rd august 2021</string>
+    <string name="hint_addNote">Write down your note</string>
+    <string name="button_addNote">Add note</string>
+    <!-- Strings used for Progression Activity -->
+    <string name="Speciality">Speciality</string>
+    <string name="placeholder_specialityName">Espressionismo</string>
+    <string name="placeholder_firstTest">Make the first test with your patrol master</string>
+    <string name="placeholder_secondTest">For the second test you must do the second test with your patrol master</string>
+    <string name="placeholder_thirdTest">In order to achieve the third test you must be nice and happy</string>
+    <string name="placeholder_fourthTest">The fourth test is usually the easy one, come on and get it</string>
+    <string name="freeTestLong">Test in agreement with the department head</string>
+
+    <!-- Strings used for Progression Fragments -->
+    <string name="promise">Promise</string>
+    <string name="secondClass">Second Class</string>
+    <string name="firstClass">First Class</string>
+    <string name="firstTest">First Test</string>
+    <string name="secondTest">Second Test</string>
+    <string name="thirdTest">Third Test</string>
+    <string name="fourthTest">Fourth Test</string>
+    <string name="fifthTest">Fifth Test</string>
+    <string name="sixthTest">Sixth Test</string>
+    <string name="seventhTest">Seventh Test</string>
+    <string name="eighthTest">Eighth Test</string>
+    <string name="ninthTest">Ninth Test</string>
+    <string name="tenthTest">Tenth Test</string>
+    <string name="eleventhTest">Eleventh Test</string>
+    <string name="twelfthTest">Twelfth Test</string>
+    <string name="freeTest">Free Test</string>
+    <string name="completed"> Completed</string>
+
+    <!-- Strings used for Specialities -->
+    <string-array name="specialitiesName_array">
+        <item>International Friendship</item>
+        <item>Mountain Climbing</item>
+        <item>Artist</item>
+        <item>Astronomer</item>
+        <item>Athlete</item>
+        <item>Adventure</item>
+        <item>Campism</item>
+        <item>Cyclist</item>
+        <item>Manufacturer</item>
+        <item>Cooker</item>
+        <item>Expressionism</item>
+        <item>Photograph</item>
+        <item>Stoker</item>
+        <item>Journalist</item>
+        <item>Guide</item>
+        <item>Computer Scientist</item>
+        <item>Meteorologist</item>
+        <item>Musician</item>
+        <item>Naturalist</item>
+        <item>Swimmer</item>
+        <item>Orientation</item>
+        <item>Skater</item>
+        <item>Pioneering</item>
+        <item>First Aid</item>
+        <item>Signaler</item>
+        <item>Sporty</item>
+    </string-array>
+    <string name="placeholder_role">Role</string>
+    <string-array name="specialityTest_array">
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+    </string-array>
+    <string name="pickSpecialityTitle">Pick a new Speciality</string>
+    <!-- String for the creation of a new scout -->
+    <string name="pickAnImage">Pick an image</string>
+    <string name="dateBirth">Date of Birth</string>
+    <string-array name="roleInPatrol">
+        <item>Patrol Leader</item>
+        <item>Deputy Patrol Chief</item>
+        <item>Patroller</item>
+        <item>Tender Foot</item>
+    </string-array>
+    <string name="newPatrol">New Patrol</string>
+    <string-array name="progressionArray">
+        <item>Tender Foot</item>
+        <item>Promised</item>
+        <item>Second Class</item>
+        <item>First Class</item>
+    </string-array>
+    <!-- Strings for menu folder -->
+    <string name="share">Share</string>
+    <string name="delete">Delete</string>
+    <string name="gone">Is gone</string>
+    <string name="edit">Edit</string>
+    <string name="deleteEntry">Delete entry</string>
+    <string name="sure">Are you sure you want to delete this entry?</string>
+
+
+</resources>

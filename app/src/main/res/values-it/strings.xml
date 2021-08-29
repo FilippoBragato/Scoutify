@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Reparto</string>
+    <string name="placeholder_name">Nome Cognome</string>
+    <string name="placeholder_role">Ruolo</string>
+    <string name="placeholder_patrol">Pattuglia</string>
+    <string name="placeholder_summary">Scout di prima classe con le specialità di cuoco, fuochista, pionierismo e musicista</string>
+    <string name="add_button_description">Scrivi una nuova annotazione</string>
+    <string name="placeholder_data">23 agosto 2021</string>
+    <string name="hint_addNote">Scrivi la nuova annotazione</string>
+    <string name="button_addNote">Aggiungi annotazione</string>
+    <!-- Strings used for Progression Activity -->
+    <string name="Speciality">Specialità</string>
+    <string name="placeholder_specialityName">Pionierismo</string>
+    <string name="placeholder_firstTest">Fai la prima prova con il tuo Capo Pattuglia</string>
+    <string name="placeholder_secondTest">Per la seconda prova, dovrai fare la seconda prova con il tuo Capo Pattuglia</string>
+    <string name="placeholder_thirdTest">Se vuoi completare la terza prova dovrai essere carino e coccoloso</string>
+    <string name="placeholder_fourthTest">La quarta è quella facile, corri a farla</string>
+    <string name="freeTestLong">Prova in accordo con il capo reparto</string>
+
+    <!-- Strings used for Progression Fragments -->
+    <string name="promise">Promessa</string>
+    <string name="secondClass">Seconda Classe</string>
+    <string name="firstClass">Prima Classe</string>
+    <string name="firstTest">Prima Prova</string>
+    <string name="secondTest">Seconda Prova</string>
+    <string name="thirdTest">Terza Prova</string>
+    <string name="fourthTest">Quarta Prova</string>
+    <string name="fifthTest">Quinta Prova</string>
+    <string name="sixthTest">Sesta Prova</string>
+    <string name="seventhTest">Settima Prova</string>
+    <string name="eighthTest">Ottava Prova</string>
+    <string name="ninthTest">Nona Prova</string>
+    <string name="tenthTest">Decima Prova</string>
+    <string name="eleventhTest">Undicesima Prova</string>
+    <string name="twelfthTest">Dodicesima Prova</string>
+    <string name="freeTest">Prova Libera</string>
+    <string name="completed"> Completa</string>
+
+    <!-- Strings used for Specialities -->
+    <string-array name="specialitiesName_array">
+        <item>Amicizia Internazionale</item>
+        <item>Alpinismo</item>
+        <item>Artista</item>
+        <item>Astronomo</item>
+        <item>Atleta</item>
+        <item>Avventura</item>
+        <item>Campismo</item>
+        <item>Ciclista</item>
+        <item>Costruttore</item>
+        <item>Cuciniere</item>
+        <item>Espressionismo</item>
+        <item>Fotografo</item>
+        <item>Fuochista</item>
+        <item>Giornalista</item>
+        <item>Guida</item>
+        <item>Informatico</item>
+        <item>Meteorologo</item>
+        <item>Musicista</item>
+        <item>Naturalista</item>
+        <item>Nuotatore</item>
+        <item>Orientamento</item>
+        <item>Pattinatore</item>
+        <item>Pionierismo</item>
+        <item>Primo Soccorso</item>
+        <item>Segnalatore</item>
+        <item>Sportivo</item>
+    </string-array>
+    <string-array name="specialityTest_array">
+        <item>Avere conoscenze delle organizzazioni internazionali che operano per la cooperazione tra i popoli</item>
+        <item>Conoscere gli usi e costumi di un’altra nazione (feste, inni)</item>
+        <item>Essere in contatto con una persona che vive in un’altra nazione</item>
+        <item>Realizzare un’intervista a una comunità straniera</item>
+        <item>Conoscere le regolamentazioni (nazionali, regionali o comunali) per il pernottamento in montagna</item>
+        <item>Conoscere i rilievi montani della regione</item>
+        <item>Saper eseguire con sicurezza almeno 4 nodi da alpinismo indicando il loro uso in montagna e saper usare l’attrezzatura da alpinismo.</item>
+        <item>Conoscere le necessità alimentari e il valore energetico degli alimenti più adatti per una dieta di montagna e ideare un menù per un’escursione.</item>
+        <item>Avere conoscenze di alcune tecniche pittoriche</item>
+        <item>Realizzare un oggetto per abbellire la sede</item>
+        <item>Fare la caricatura della propria pattuglia</item>
+        <item>Eseguire uno schizzo panoramico</item>
+        <item>Avere nozioni generali sugli astri, conoscere costellazioni, allineamenti e saper trovare le stelle maggiori</item>
+        <item>Avere nozioni generali sul sistema solare (pianeti, comete, meteore, asteroidi, eclissi, maree, fasi lunari)</item>
+        <item>Aver partecipato ad una veglia dedicata alle stelle, annotando risultati sul quaderno di caccia (uso puntatore, astrolabio)</item>
+        <item>Sapersi orientare con le stelle</item>
+        <item>Conoscere le principali discipline olimpiche e la dieta più adatta per uno sportivo.</item>
+        <item>Saper tenere una seduta di ginnastica di riscaldamento per tutto il Reparto</item>
+        <item>Conoscere gli infortuni sportivi più comuni e sapere come comportarsi</item>
+        <item>Superare le seguenti prove: corsa veloce |corsa di resistenza | salto in alto | salto in lungo</item>
+        <item>Saper portare i primi soccorsi a un infortunato, conoscere i numeri di telefono utili per le emergenze</item>
+        <item>Saper eseguire un percorso Herbert in un tempo adeguato alla difficoltà dello stesso</item>
+        <item>Aver eseguito un Hike proposto dal Capo Reparto da solo o in coppia</item>
+        <item>Eseguire da soli un percorso di notte proposto dal Capo Reparto</item>
+        <item>Sapersi equipaggiare per campi estivi e invernali di più giorni con il minimo indispensabile (sia personale che di pattuglia)</item>
+        <item>Conoscere le principali norme di sicurezza delle zone boschive</item>
+        <item>Con dati forniti dal Capo Reparto (direzione e verso del vento, punto acqua, posizione strade, vegetazione, conformazione del terreno…) presentare una mappa dell’ipotetica dislocazione di tende e servizi necessari per un campo</item>
+        <item>Mantenere in ordine il materiale da lavoro (durante l’intera durata in un campo). Ideare un angolo di pattuglia con una serie di comodità da campo e saperle realizzare </item>
+        <item>Conoscere le norme di circolazione del traffico stradale</item>
+        <item>Saper mantenere efficiente la propria bicicletta e fare le riparazioni necessarie</item>
+        <item>Saper progettare una escursione ciclistica di uno o due giorni per il Reparto</item>
+        <item>Percorrere un percorso ciclistico preparato dal Capo Reparto</item>
+        <item>Costruire un oggetto utile per la pattuglia o per il reparto</item>
+        <item>Portare il plastico di un luogo/ambiente che solitamente si frequenta</item>
+        <item>Costruire un modellino di un oggetto a piacere</item>
+        <item>Saper utilizzare vari tipi di colori ed attrezzi</item>
+        <item>Descrivere vari metodi di cottura dei cibi e sapere realizzarne almeno uno</item>
+        <item>Sapere conservare i cibi al campo</item>
+        <item>Saper mantenere efficiente e ordinata la cucina durante un campo o ad un’uscita </item>
+        <item>Preparare un menù completo (per una pattuglia o capi o Reparto) con dosi e approssimativa spesa, realizzandolo</item>
+        <item>Proporre un gioco al proprio reparto o alla propria pattuglia</item>
+        <item>Preparare alcuni vestiti o la scenografia per un fuoco a tema</item>
+        <item>Esibirsi individualmente in una particolare tecnica espressiva (insegnare un nuovo ban, un canto, raccontare una barzelletta, fare un mimo…)</item>
+        <item>Saper organizzare e gestire un fuoco di campo</item>
+        <item>Avere conoscenze generali sul funzionamento di una macchina fotografica o di una telecamera </item>
+        <item>Raccontare nell’albo d’oro un’attività/uscita di pattuglia/reparto con un servizio fotografico o con un film e postarlo nel sito AVSC</item>
+        <item>Conoscere e saper usare il materiale tecnico</item>
+        <item>Conoscere i formati fotografici digitali e saper utilizzare un programma di fotoritocco</item>
+        <item>Conoscere le principali norme di sicurezza e sapersi comportare in una situazione di incendio </item>
+        <item>Costruire diversi tipi di focolare (piramide, catasta, stella)</item>
+        <item>Saper accendere e mantenere un fuoco anche in condizioni metereologiche avverse </item>
+        <item>Dividere la legna in base al calibro e alla tipologia. Mantenere un fuoco da campo sapendo illuminare i diversi momenti</item>
+        <item>Conoscere alcune testate giornalistiche e la struttura di un giornale </item>
+        <item>Fare una relazione (sull’albo d’oro) su un’attività/uscita</item>
+        <item>Saper impaginare un testo con immagini e scriverlo al computer</item>
+        <item>Fare un’intervista/sondaggio su un argomento di attualità</item>
+        <item>Conoscere i principali monumenti della tua città e del capoluogo. di Provincia)</item>
+        <item>Avere informazioni sulla cultura e tradizioni di un luogo (es. posto del campo o di una uscita)</item>
+        <item>Fare da guida turistica durante un’uscita di pattuglia/Reparto</item>
+        <item>Presentare il programma di un viaggio da effettuare con mezzi pubblici e relativo preventivo del costo</item>
+        <item>Conoscere i componenti principali e il funzionamento di un pc e periferiche</item>
+        <item>Saper utilizzare i pacchetti applicativi come editor di testo, di immagini, audio-video, etc</item>
+        <item>Conoscere il funzionamento di internet</item>
+        <item>Trovare ed utilizzare un’app che sia utile alla pattuglia</item>
+        <item>Avere conoscenze generali sui comuni fenomeni atmosferici e sui proverbi legati ad essi</item>
+        <item>Conoscere gli strumenti meteorologici e saperli usare</item>
+        <item>Saper consultare previsioni e immagini radar</item>
+        <item>In base ai dati ambientali, fare una stima di che tempo farà</item>
+        <item>Saper suonare uno strumento musicale e avere conoscenze base di musica (saper leggere uno spartito)</item>
+        <item>Avere un repertorio di canzoni da proporre al fuoco, per la messa, per una camminata</item>
+        <item>Sapere come è composto e funziona il proprio strumento e saper effettuare la manutenzione necessaria, specialmente al campo</item>
+        <item>Aver modificato il testo di una canzone per adattarla ad un tema </item>
+        <item>Saper classificare le piante e presentare un erbario</item>
+        <item>Conoscere la flora e la fauna, i parchi e le zone protette della propria regione</item>
+        <item>Avere nozioni riguardanti il riciclaggio e lo smaltimento dei rifiuti nella propria città</item>
+        <item>Saper riconoscere e utilizzare le piante commestibili o con altre proprietà</item>
+        <item>Conoscere i vari stili di nuoto</item>
+        <item>Conoscere e saper applicare le principali norme di sicurezza in ambiente acquatico</item>
+        <item>Saper nuotare almeno 50 metri a stile libero e 50 metri a uno stile a scelta; sapersi tuffare in almeno 3 modi differenti</item>
+        <item>Dimostrare di saper portare a riva un compagno in difficoltà</item>
+        <item>Saper leggere ed usare con sicurezza una carta topografica 1:25000 (orientarla e presentare itinerari)</item>
+        <item>Conoscere la cartografia italiana di uso corrente (scala, cartina geografica, topografica, zona, foglio, quadrante, tavoletta)</item>
+        <item>Conoscere e saper usare la bussola ed eseguire una marcia ad azimut</item>
+        <item>Saper eseguire con sicurezza ed efficacia una triangolazione</item>
+        <item>Conoscere i vari tipi di pattini da strada e da ghiaccio e la loro manutenzione </item>
+        <item>Saper eseguire uno slalom tra i birilli</item>
+        <item>Saper pattinare all’indietro</item>
+        <item>Dopo avere preso una rincorsa sapersi arrestare in un breve spazio</item>
+        <item>Conoscere i vari tipi di corde e le loro parti (camicia, anima, trefolo) e sapere eseguire i nodi fondamentali (semplice, piano, pescatore, savoia, bolina, barcaiolo)</item>
+        <item>Saper eseguire correttamente vari tipi di legature e giunzioni di pali (croce, quadra, treppiede, parallela)</item>
+        <item>Progettare e realizzare una struttura fissa da campo</item>
+        <item>Mantenere in buono stato le attrezzature utilizzate. Saper imbracare un oggetto e fare un capo corda</item>
+        <item>Avere nozioni sufficienti di fisiologia umana (ossa, circolazione, muscoli, respirazione)</item>
+        <item>Sapersi comportare nel caso dei più comuni infortuni (lesioni superficiali e profonde, ustioni, shock, epistassi, morsi, punture) sia nel caso di primo soccorso che di pronto soccorso</item>
+        <item>Conoscere i principali numeri d’emergenza italiani ed esteri; saper comunicare correttamente ai soccorsi un’emergenza in italiano e in inglese. Saper effettuare procedure GAS e ABC</item>
+        <item>Conoscere il contenuto della cassetta di Pronto Soccorso e saperne usare il contenuto; tenere l’infermeria al campo5.	Sapere usare fasce, bende, steccature e saper costruire una barella di emergenza</item>
+        <item>Conoscere i linguaggi morse o semaforico, i segnali di servizio di reparto, di soccorso e le norme di segnalazione</item>
+        <item>Saper organizzare una base di trasmissione e di ricezione</item>
+        <item>Saper utilizzare per le segnalazioni suoni e luci. Costruire un piccolo apparecchio per la segnalazione (luminosa o acustica)</item>
+        <item>Conoscere i vari tipi di pista a tracce e prepararne una</item>
+        <item>Praticare uno sport di squadra e conoscere a fondo il regolamento di almeno due sport</item>
+        <item>Saper organizzare un torneo di palla scalpo tra le pattuglie dell’associazione (in linea teorica) e arbitrare con competenza una partita tra gli esploratori del Reparto</item>
+        <item>Conoscere le regole di alcuni giochi scout</item>
+        <item>Inventare un gioco di squadra da fare con il Reparto</item>
+        <item>Prova decisa dall’esploratore in accordo con il Capo Reparto</item>
+    </string-array>
+    <string name="pickSpecialityTitle">Scegli una nuova specialità</string>
+    <string name="pickAnImage">Scegli un\'immagine</string>
+    <string name="dateBirth">Data di nascita</string>
+    <string-array name="roleInPatrol">
+        <item>Capo Pattuglia</item>
+        <item>Vice Capo Pattuglia</item>
+        <item>Pattugliotto</item>
+        <item>Piede Tenero</item>
+    </string-array>
+    <string name="newPatrol">Nuova Pattuglia</string>
+    <string-array name="progressionArray">
+        <item>Piede Tenero</item>
+        <item>Promessato</item>
+        <item>Seconda Classe</item>
+        <item>Prima Classe</item>
+    </string-array>
+
+    <string name="share">Condividi</string>
+    <string name="delete">Cancella</string>
+    <string name="gone">È parito</string>
+    <string name="edit">Modifica</string>
+    <string name="deleteEntry">Rimuovi Esploratore</string>
+    <string name="sure">Sei sicuro di voler rimuovere questo esploratore?</string>
+
+
+</resources>
