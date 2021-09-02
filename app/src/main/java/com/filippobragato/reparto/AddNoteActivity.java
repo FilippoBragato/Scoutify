@@ -1,21 +1,22 @@
 package com.filippobragato.reparto;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.filippobragato.reparto.backend.Note;
 import com.filippobragato.reparto.database.NoteDao;
 import com.filippobragato.reparto.database.RoomDB;
+import com.google.android.material.textfield.TextInputLayout;
 
-import java.util.Date;
+import java.util.Objects;
 
 public class AddNoteActivity extends AppCompatActivity {
+    private Button confirmButton;
+    private TextInputLayout textNote;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,14 +27,14 @@ public class AddNoteActivity extends AppCompatActivity {
         NoteDao noteDao = database.noteDao();
 
         // find element
-        Button add = findViewById(R.id.saveNote);
-        EditText text = findViewById(R.id.newNote);
+        confirmButton = findViewById(R.id.addNoteButtonConfirm);
+        textNote = findViewById(R.id.newNoteContainer);
 
         //Add on click
-        add.setOnClickListener(new View.OnClickListener() {
+        confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String txt = text.getText().toString();
+                String txt = Objects.requireNonNull(textNote.getEditText()).getText().toString();
                 if(!txt.equals("")) {
                     Note note = new Note(txt, getIntent().getIntExtra("scout_ID", -1));
                     noteDao.insert(note);
@@ -42,5 +43,4 @@ public class AddNoteActivity extends AppCompatActivity {
             }
         });
     }
-
 }

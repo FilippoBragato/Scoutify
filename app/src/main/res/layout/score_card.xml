@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="50dp"
+    android:layout_margin="4dp"
+    android:clickable="true"
+    android:focusable="true">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:paddingLeft="8dp"
+        android:paddingStart="8dp">
+
+        <TextView
+            android:id="@+id/cardScoreFieldText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/placeholder_role" />
+
+        <TextView
+            android:id="@+id/cardScoreNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="4dp"
+            android:layout_toRightOf="@id/cardScoreFieldText"
+            android:text="@string/placeholder_score"
+            android:textStyle="bold"
+            android:layout_marginStart="4dp"
+            android:layout_toEndOf="@id/cardScoreFieldText" />
+
+
+        <ImageView
+            android:id="@+id/cardScoreImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/cardScoreNumber"
+            android:src="@drawable/ic_strong_up"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_toEndOf="@id/cardScoreNumber"
+            android:layout_marginStart="8dp" />
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

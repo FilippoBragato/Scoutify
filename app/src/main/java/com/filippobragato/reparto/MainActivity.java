@@ -5,15 +5,19 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.view.ActionMode;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,6 +27,7 @@ import com.filippobragato.reparto.backend.Department;
 import com.filippobragato.reparto.backend.Scout;
 import com.filippobragato.reparto.database.RoomDB;
 import com.filippobragato.reparto.database.ScoutDao;
+import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 
@@ -34,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView patrolsRecView;
     private PatrolRecViewAdapter adapter;
     private boolean selectedCardFlag = false;
-    private CardView card;
+    private MaterialCardView card;
     private Scout selectedScout;
 
     private RoomDB database;
@@ -47,11 +52,10 @@ public class MainActivity extends AppCompatActivity {
         this.selectedCardFlag = selectedCardFlag;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.R)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         super.onCreate(savedInstanceState);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_main);
         //TODO: fare due frammenti, uno per la pattuglia e uno per i pattuglianti da gestire entrambi con tableLayout
         database = RoomDB.getInstance(this);
@@ -69,6 +73,10 @@ public class MainActivity extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(selectedCardFlag){
+                    invalidateOptionsMenu();
+                    toggleSelectedModeOff();
+                }
                 startActivity(new Intent(MainActivity.this, AddScoutActivity.class));
             }
         });
@@ -93,16 +101,22 @@ public class MainActivity extends AppCompatActivity {
         super.onRestart();
     }
 
-    public void toggleSelectedModeOn(CardView v, Scout s) {
+    public void toggleSelectedModeOn(MaterialCardView v, Scout s) {
         selectedCardFlag = true;
         this.card = v;
         this.selectedScout = s;
+        ActionBar supportActionBar = getSupportActionBar();
+        supportActionBar.setTitle(selectedScout.getName() + " selected");
+        supportActionBar.setHomeAsUpIndicator(R.drawable.ic_clear);
+        supportActionBar.setDisplayHomeAsUpEnabled(true);
         invalidateOptionsMenu();
     }
 
     public void toggleSelectedModeOff(){
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        getSupportActionBar().setTitle(R.string.app_name);
         selectedCardFlag = false;
-        card.setCardBackgroundColor(getResources().getColor(R.color.white));
+        card.setChecked(false);
         this.card = null;
         this.selectedScout = null;
     }
@@ -182,6 +196,11 @@ public class MainActivity extends AppCompatActivity {
             Objects.requireNonNull(patrolsRecView.getAdapter()).notifyDataSetChanged();
             invalidateOptionsMenu();
             toggleSelectedModeOff();
+            return super.onOptionsItemSelected(item);
+        }
+        if (id == android.R.id.home) {
+            toggleSelectedModeOff();
+            invalidateOptionsMenu();
             return super.onOptionsItemSelected(item);
         }
         return super.onOptionsItemSelected(item);

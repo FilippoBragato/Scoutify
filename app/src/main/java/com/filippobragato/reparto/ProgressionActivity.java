@@ -80,6 +80,7 @@ public class ProgressionActivity extends AppCompatActivity {
         specialityRecyclerView.setAdapter(adapter);
         specialityRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         specialityRecyclerView.addItemDecoration(new DividerItemDecoration(specialityRecyclerView.getContext(), DividerItemDecoration.VERTICAL));
+        specialityRecyclerView.setNestedScrollingEnabled(false);
 
         //SET BUTTON
         FloatingActionButton add = findViewById(R.id.floatingAddSpeciality);

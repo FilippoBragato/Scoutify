@@ -10,11 +10,12 @@ import com.filippobragato.reparto.backend.FirstClass;
 import com.filippobragato.reparto.backend.Note;
 import com.filippobragato.reparto.backend.Progression;
 import com.filippobragato.reparto.backend.Promise;
+import com.filippobragato.reparto.backend.Score;
 import com.filippobragato.reparto.backend.Scout;
 import com.filippobragato.reparto.backend.SecondClass;
 import com.filippobragato.reparto.backend.Speciality;
 
-@Database(entities = {Scout.class, Note.class, Promise.class, SecondClass.class, FirstClass.class, Speciality.class}, version = 1, exportSchema = false)
+@Database(entities = {Scout.class, Note.class, Promise.class, SecondClass.class, FirstClass.class, Speciality.class, Score.class}, version = 1, exportSchema = false)
 public abstract class RoomDB extends RoomDatabase {
     private static RoomDB database;
     private static String DATABASE_NAME = "database";
@@ -36,4 +37,5 @@ public abstract class RoomDB extends RoomDatabase {
     public abstract SecondDao secondDao();
     public abstract FirstDao firstDao();
     public abstract SpecialityDao specialityDao();
+    public abstract ScoreDao scoreDao();
 }

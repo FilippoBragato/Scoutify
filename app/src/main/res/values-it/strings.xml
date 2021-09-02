@@ -4,6 +4,7 @@
     <string name="placeholder_name">Nome Cognome</string>
     <string name="placeholder_role">Ruolo</string>
     <string name="placeholder_patrol">Pattuglia</string>
+    <string name="placeholder_vertical">Progressione</string>
     <string name="placeholder_summary">Scout di prima classe con le specialità di cuoco, fuochista, pionierismo e musicista</string>
     <string name="add_button_description">Scrivi una nuova annotazione</string>
     <string name="placeholder_data">23 agosto 2021</string>
@@ -182,6 +183,7 @@
         <item>Pattugliotto</item>
         <item>Piede Tenero</item>
     </string-array>
+    <string name="new_">Nuova</string>
     <string name="newPatrol">Nuova Pattuglia</string>
     <string-array name="progressionArray">
         <item>Piede Tenero</item>
@@ -191,11 +193,48 @@
     </string-array>
 
     <string name="share">Condividi</string>
+    <string name="import_menu">Importa</string>
     <string name="delete">Cancella</string>
     <string name="gone">È parito</string>
     <string name="edit">Modifica</string>
+    <string name="add">Crea</string>
     <string name="deleteEntry">Rimuovi Esploratore</string>
     <string name="sure">Sei sicuro di voler rimuovere questo esploratore?</string>
+
+    <string name="tab_text_Note">Note</string>
+    <string name="tab_text_Score">Punteggi</string>
+
+
+    <string name="character">Carattere</string>
+    <string name="manualSkill">Abilità Manuale</string>
+    <string name="spiritOfService">Spirito di Servizio</string>
+    <string name="healthAndStrength">Salute e forza fisica</string>
+
+    <string-array name="scoreField">
+        <item>Capi</item>
+        <item>Explo</item>
+        <item>Ruolo</item>
+        <item>Se stesso</item>
+        <item>Fuoco</item>
+        <item>Nodi</item>
+        <item>Cucina</item>
+        <item>Orientamento</item>
+        <item>Topografia</item>
+        <item>Meteo</item>
+        <item>Segnalazione</item>
+        <item>Primo soccorso</item>
+        <item>Arte</item>
+        <item>Espressionismo</item>
+        <item>Campismo</item>
+        <item>Natura</item>
+        <item>Spirito di servizio</item>
+        <item>Salute e forza fisica</item>
+    </string-array>
+
+    <string name="field">Campo</string>
+    <string name="mark">Voto</string>
+    <string name="errorNumber">inserisci un numero</string>
+    <string name="dialogScore">Aggiungi un voto per</string>
 
 
 </resources>

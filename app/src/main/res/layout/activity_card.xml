@@ -4,79 +4,345 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     tools:context=".CardActivity">
-
-    <ImageView
-        android:id="@+id/scoutImage"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:src="@drawable/ic_scout" />
-
-    <RelativeLayout
-        android:id="@+id/infoContainer"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="4dp"
-        android:layout_toRightOf="@id/scoutImage"
-        android:layout_marginStart="16dp"
-        android:layout_toEndOf="@id/scoutImage">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/scoutName"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/placeholder_name"
-            android:textAllCaps="true"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:padding="16dp">
 
-        <TextView
-            android:id="@+id/scoutRole"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/scoutName"
-            android:text="@string/placeholder_role" />
+            <ImageView
+                android:id="@+id/scoutImage"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/ic_scout" />
 
-        <TextView
-            android:id="@+id/scoutPatrol"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/scoutRole"
-            android:text="@string/placeholder_patrol"
-            android:textSize="12sp" />
+            <RelativeLayout
+                android:id="@+id/infoContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_toEndOf="@id/scoutImage"
+                android:layout_toRightOf="@id/scoutImage">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/scoutSummary"
-            android:layout_below="@id/scoutPatrol"
-            android:text="@string/placeholder_summary"
-            android:layout_marginTop="16dp"
-            android:clickable="true"
-            android:focusable="true" />
+                <TextView
+                    android:id="@+id/scoutName"
+                    style="@style/TextAppearance.MaterialComponents.Headline5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/placeholder_name" />
+
+                <TextView
+                    android:id="@+id/scoutRole"
+                    style="@style/TextAppearance.MaterialComponents.Subtitle2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/scoutName"
+                    android:text="@string/placeholder_role" />
+
+                <TextView
+                    android:id="@+id/scoutPatrol"
+                    style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/scoutRole"
+                    android:text="@string/placeholder_patrol" />
+
+                <TextView
+                    android:id="@+id/scoutSummary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/scoutPatrol"
+                    android:layout_marginTop="16dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:text="@string/placeholder_summary" />
+            </RelativeLayout>
 
 
-    </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/scoreContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/scoutImage"
+                android:layout_marginTop="8dp">
 
+                <TextView
+                    android:id="@+id/scoutCharacterTitle"
+                    style="@style/TextAppearance.MaterialComponents.Subtitle2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/character" />
+
+                <RelativeLayout
+                    android:id="@+id/scoutCharacterContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/scoutCharacterTitle">
+
+                    <include
+                        android:id="@+id/scoutCharacterLeaders"
+                        layout="@layout/score_card"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp" />
+
+                    <include
+                        android:id="@+id/scoutCharacterScout"
+                        layout="@layout/score_card"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_toRightOf="@id/scoutCharacterLeaders" />
+
+                    <include
+                        android:id="@+id/scoutCharacterRole"
+                        layout="@layout/score_card"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_toRightOf="@id/scoutCharacterScout" />
+
+                    <include
+                        android:id="@+id/scoutCharacterSelf"
+                        layout="@layout/score_card"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/scoutCharacterScout"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/scoutSkillTitle"
+                    style="@style/TextAppearance.MaterialComponents.Subtitle2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/scoutCharacterContainer"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/manualSkill" />
+
+                <RelativeLayout
+                    android:id="@+id/scoutSkillContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/scoutSkillTitle">
+
+                    <include
+                        android:id="@+id/scoutSkillStoker"
+                        layout="@layout/score_card"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp" />
+
+                    <include
+                        android:id="@+id/scoutSkillPioneering"
+                        layout="@layout/score_card"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:layout_toEndOf="@id/scoutSkillStoker"
+                        android:layout_toRightOf="@id/scoutSkillStoker" />
+
+                    <include
+                        android:id="@+id/scoutSkillCooker"
+                        layout="@layout/score_card"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:layout_toEndOf="@id/scoutSkillPioneering"
+                        android:layout_toRightOf="@id/scoutSkillPioneering" />
+
+                    <include
+                        android:id="@+id/scoutSkillOrienteering"
+                        layout="@layout/score_card"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/scoutSkillStoker"
+                        android:layout_margin="4dp" />
+
+                    <include
+                        android:id="@+id/scoutSkillTopography"
+                        layout="@layout/score_card"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/scoutSkillPioneering"
+                        android:layout_margin="4dp"
+                        android:layout_toEndOf="@id/scoutSkillOrienteering"
+                        android:layout_toRightOf="@id/scoutSkillOrienteering" />
+
+                    <include
+                        android:id="@+id/scoutSkillSignaler"
+                        layout="@layout/score_card"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/scoutSkillOrienteering"
+                        android:layout_margin="4dp" />
+
+                    <include
+                        android:id="@+id/scoutSkillFirstAid"
+                        layout="@layout/score_card"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/scoutSkillTopography"
+                        android:layout_margin="4dp"
+                        android:layout_toEndOf="@id/scoutSkillSignaler"
+                        android:layout_toRightOf="@id/scoutSkillSignaler" />
+
+                    <include
+                        android:id="@+id/scoutSkillArtist"
+                        layout="@layout/score_card"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/scoutSkillSignaler"
+                        android:layout_margin="4dp" />
+
+                    <include
+                        android:id="@+id/scoutSkillNaturalism"
+                        layout="@layout/score_card"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/scoutSkillFirstAid"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_toEndOf="@id/scoutSkillArtist"
+                        android:layout_toRightOf="@id/scoutSkillArtist" />
+
+                    <include
+                        android:id="@+id/scoutSkillMeteorology"
+                        layout="@layout/score_card"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/scoutSkillFirstAid"
+                        android:layout_margin="4dp"
+                        android:layout_toEndOf="@id/scoutSkillNaturalism"
+                        android:layout_toRightOf="@id/scoutSkillNaturalism" />
+
+                    <include
+                        android:id="@+id/scoutSkillCampism"
+                        layout="@layout/score_card"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/scoutSkillArtist"
+                        android:layout_margin="4dp" />
+
+                    <include
+                        android:id="@+id/scoutSkillExpressionism"
+                        layout="@layout/score_card"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/scoutSkillNaturalism"
+                        android:layout_margin="4dp"
+                        android:layout_toEndOf="@id/scoutSkillCampism"
+                        android:layout_toRightOf="@id/scoutSkillCampism" />
+
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/scoutSpiritTitle"
+                    style="@style/TextAppearance.MaterialComponents.Subtitle2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/scoutSkillContainer"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/spiritOfService" />
+
+                <include
+                    android:id="@+id/scoutSpirit"
+                    layout="@layout/score_card"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/scoutSpiritTitle"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:id="@+id/scoutHealthAndStrengthTitle"
+                    style="@style/TextAppearance.MaterialComponents.Subtitle2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/scoutSpirit"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/healthAndStrength" />
+
+                <include
+                    android:id="@+id/scoutHealth"
+                    layout="@layout/score_card"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/scoutHealthAndStrengthTitle"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginBottom="4dp" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/scoutNoteTitle"
+                style="@style/TextAppearance.MaterialComponents.Subtitle2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/scoreContainer"
+                android:layout_marginTop="4dp"
+                android:text="@string/tab_text_Note" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/scoutNotes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/scoutNoteTitle"
+                android:layout_marginBottom="64dp" />
+        </RelativeLayout>
+    </ScrollView>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addNoteButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:src="@drawable/ic_add"
+        android:clickable="true"
+        android:contentDescription="@string/add_button_description"
         android:focusable="true"
-        android:contentDescription="@string/add_button_description" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/scoutImage"
-        android:id="@+id/scoutNotes"
+        android:src="@drawable/ic_add"
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="16dp"
         />
 
 

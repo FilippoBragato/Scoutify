@@ -26,7 +26,7 @@ public class SpecialityRecViewAdapter extends RecyclerView.Adapter<SpecialityRec
     private final String[] testsBody;
     private RoomDB database;
 
-
+    //TODO TOGGLE SCROLLABLE OFF
     public SpecialityRecViewAdapter(List<Speciality> specialities, String[] name, String[] tests) {
         this.specialities = specialities;
         this.name = name;

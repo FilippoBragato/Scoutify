@@ -1,6 +1,7 @@
 package com.filippobragato.reparto.RecViewAdapter;
 
 import android.content.Intent;
+import android.view.ActionMode;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import com.filippobragato.reparto.CardActivity;
 import com.filippobragato.reparto.MainActivity;
 import com.filippobragato.reparto.R;
 import com.filippobragato.reparto.backend.Scout;
+import com.google.android.material.card.MaterialCardView;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -62,15 +64,15 @@ public class ScoutRecViewAdapter extends RecyclerView.Adapter<ScoutRecViewAdapte
                     activity.invalidateOptionsMenu();
                 }
                 else {
-                    ((CardView) v).setCardBackgroundColor(v.getResources().getColor(R.color.red_200_trasp));
-                    activity.toggleSelectedModeOn((CardView) v, scouts.get(holder.getAdapterPosition()));
+                    holder.cardView.setChecked(true);
+                    activity.toggleSelectedModeOn(holder.cardView, scouts.get(holder.getAdapterPosition()));
                 }
                 return true;
             }
         });
         if(scouts.get(position).getImageUri()!=null){
             Glide.with(activity).load(scouts.get(position).getImageUri()).into(holder.scoutImage);
-            holder.scoutImage.setBackgroundColor(activity.getResources().getColor(R.color.white));
+            holder.scoutImage.setBackgroundColor(activity.getResources().getColor(R.color.white_50));
         }
     }
 
@@ -83,7 +85,7 @@ public class ScoutRecViewAdapter extends RecyclerView.Adapter<ScoutRecViewAdapte
 
         private TextView scoutName, scoutRole;
         private ImageView scoutImage;
-        private CardView cardView;
+        private MaterialCardView cardView;
 
         public ViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);

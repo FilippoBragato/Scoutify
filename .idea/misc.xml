@@ -3,9 +3,28 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Filippo/AndroidStudioProjects/Reparto/app/src/main/res/drawable-anydpi/ic_clear.xml" value="0.34791666666666665" />
+        <entry key="..\:/Users/Filippo/AndroidStudioProjects/Reparto/app/src/main/res/layout/activity_add_note.xml" value="0.5461538461538461" />
+        <entry key="..\:/Users/Filippo/AndroidStudioProjects/Reparto/app/src/main/res/layout/activity_add_note2.xml" value="0.33177083333333335" />
         <entry key="..\:/Users/Filippo/AndroidStudioProjects/Reparto/app/src/main/res/layout/activity_add_scout.xml" value="0.5461538461538461" />
-        <entry key="..\:/Users/Filippo/AndroidStudioProjects/Reparto/app/src/main/res/layout/activity_card.xml" value="0.33177083333333335" />
-        <entry key="..\:/Users/Filippo/AndroidStudioProjects/Reparto/app/src/main/res/layout/scout_list_item.xml" value="0.33177083333333335" />
+        <entry key="..\:/Users/Filippo/AndroidStudioProjects/Reparto/app/src/main/res/layout/activity_card.xml" value="0.49765625" />
+        <entry key="..\:/Users/Filippo/AndroidStudioProjects/Reparto/app/src/main/res/layout/activity_main.xml" value="0.33229166666666665" />
+        <entry key="..\:/Users/Filippo/AndroidStudioProjects/Reparto/app/src/main/res/layout/add_score_note_list_item.xml" value="0.5456410256410257" />
+        <entry key="..\:/Users/Filippo/AndroidStudioProjects/Reparto/app/src/main/res/layout/fragment_add_long_note.xml" value="0.5546875" />
+        <entry key="..\:/Users/Filippo/AndroidStudioProjects/Reparto/app/src/main/res/layout/fragment_add_note.xml" value="0.33177083333333335" />
+        <entry key="..\:/Users/Filippo/AndroidStudioProjects/Reparto/app/src/main/res/layout/fragment_add_score_note.xml" value="0.5546875" />
+        <entry key="..\:/Users/Filippo/AndroidStudioProjects/Reparto/app/src/main/res/layout/fragment_first_class.xml" value="0.33177083333333335" />
+        <entry key="..\:/Users/Filippo/AndroidStudioProjects/Reparto/app/src/main/res/layout/fragment_new_patrol.xml" value="0.33177083333333335" />
+        <entry key="..\:/Users/Filippo/AndroidStudioProjects/Reparto/app/src/main/res/layout/insert_number_dialog.xml" value="0.33229166666666665" />
+        <entry key="..\:/Users/Filippo/AndroidStudioProjects/Reparto/app/src/main/res/layout/notes_list_item.xml" value="0.33229166666666665" />
+        <entry key="..\:/Users/Filippo/AndroidStudioProjects/Reparto/app/src/main/res/layout/patrol_list_item.xml" value="0.33229166666666665" />
+        <entry key="..\:/Users/Filippo/AndroidStudioProjects/Reparto/app/src/main/res/layout/score_card.xml" value="0.5546875" />
+        <entry key="..\:/Users/Filippo/AndroidStudioProjects/Reparto/app/src/main/res/layout/scout_list_item.xml" value="0.5461538461538461" />
+        <entry key="..\:/Users/Filippo/AndroidStudioProjects/Reparto/app/src/main/res/layout/speciality_list_item.xml" value="0.33177083333333335" />
+        <entry key="..\:/Users/Filippo/AndroidStudioProjects/Reparto/app/src/main/res/layout/switch_item.xml" value="0.33177083333333335" />
+        <entry key="..\:/Users/Filippo/AndroidStudioProjects/Reparto/app/src/main/res/layout/temp.xml" value="0.33177083333333335" />
+        <entry key="..\:/Users/Filippo/AndroidStudioProjects/Reparto/app/src/main/res/menu/itemselected_department_menu.xml" value="0.33177083333333335" />
+        <entry key="..\:/Users/Filippo/AndroidStudioProjects/Reparto/app/src/main/res/menu/main_department_menu.xml" value="0.5461538461538461" />
       </map>
     </option>
   </component>
