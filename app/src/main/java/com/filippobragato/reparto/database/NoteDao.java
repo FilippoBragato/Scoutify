@@ -22,4 +22,7 @@ public interface NoteDao {
 
     @Query("SELECT * FROM scout_note_table WHERE scout_id is :sScoutID ORDER BY date")
     List<Note> getNotesOf(int sScoutID);
+
+    @Query("SELECT * FROM scout_note_table")
+    List<Note> getAll();
 }

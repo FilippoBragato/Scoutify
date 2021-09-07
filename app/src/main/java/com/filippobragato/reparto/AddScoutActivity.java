@@ -5,6 +5,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -95,7 +96,6 @@ public class AddScoutActivity extends AppCompatActivity {
             name.getEditText().setText(editScout.getName());
             calendar.setTime(editScout.getBirthDay());
             updateLabel();
-            getActionBar().setTitle(R.string.edit);
             if(editScout.getImageUri()!=null)
                 Glide.with(this).load(editScout.getImageUri()).into(imageView);
 
@@ -216,6 +216,7 @@ public class AddScoutActivity extends AppCompatActivity {
             @Override
             public void onActivityResult(CropImageView.CropResult result) {
                 if (result.isSuccessful()) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                     imageString = result.getUriContent().toString();
                     Glide.with(AddScoutActivity.this).load(imageString).into(imageView);
                     if (editMode)
@@ -228,6 +229,7 @@ public class AddScoutActivity extends AppCompatActivity {
             @Override
             public void onActivityResult(Uri result) {
                 if(result != null) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                     CropImageOptions cropImageOptions = new CropImageOptions();
                     cropImageOptions.aspectRatioX = 100;
                     cropImageOptions.aspectRatioY = 100;

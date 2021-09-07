@@ -16,7 +16,11 @@ import java.util.List;
 
 public class Department {
     private ArrayList<Patrol> patrols;
-    private ArrayList<Scout> gone;
+    private ArrayList<Promise> promises;
+    private ArrayList<SecondClass> secondClasses;
+    private ArrayList<FirstClass> firstClasses;
+    private ArrayList<Note> notes;
+    private ArrayList<Score> scores;
 
     public ArrayList<Patrol> getPatrols() {
         return patrols;
@@ -26,22 +30,69 @@ public class Department {
         this.patrols = patrols;
     }
 
-    public ArrayList<Scout> getGone() {
-        return gone;
+    public Department(List<Scout> scouts, List<Promise> promises, List<SecondClass> secondClasses, List<FirstClass> firstClasses, List<Note> notes, List<Score> scores) {
+        this.patrols = new ArrayList<Patrol>();
+        for (Scout scout: scouts) {
+            this.addScout(scout);
+        }
+        this.promises = new ArrayList<Promise>();
+        this.promises.addAll(promises);
+        this.secondClasses = new ArrayList<SecondClass>();
+        this.secondClasses.addAll(secondClasses);
+        this.firstClasses = new ArrayList<FirstClass>();
+        this.firstClasses.addAll(firstClasses);
+        this.notes = new ArrayList<Note>();
+        this.notes.addAll(notes);
+        this.scores = new ArrayList<Score>();
+        this.scores.addAll(scores);
     }
 
-    public void setGone(ArrayList<Scout> gone) {
-        this.gone = gone;
+    public ArrayList<Promise> getPromises() {
+        return promises;
+    }
+
+    public void setPromises(ArrayList<Promise> promises) {
+        this.promises = promises;
+    }
+
+    public ArrayList<SecondClass> getSecondClasses() {
+        return secondClasses;
+    }
+
+    public void setSecondClasses(ArrayList<SecondClass> secondClasses) {
+        this.secondClasses = secondClasses;
+    }
+
+    public ArrayList<FirstClass> getFirstClasses() {
+        return firstClasses;
+    }
+
+    public void setFirstClasses(ArrayList<FirstClass> firstClasses) {
+        this.firstClasses = firstClasses;
+    }
+
+    public ArrayList<Note> getNotes() {
+        return notes;
+    }
+
+    public void setNotes(ArrayList<Note> notes) {
+        this.notes = notes;
+    }
+
+    public ArrayList<Score> getScores() {
+        return scores;
+    }
+
+    public void setScores(ArrayList<Score> scores) {
+        this.scores = scores;
     }
 
     public Department() {
         this.patrols = new ArrayList<>();
-        this.gone = new ArrayList<>();
     }
 
-    public Department(ArrayList<Patrol> patrols, ArrayList<Scout> gone) {
+    public Department(ArrayList<Patrol> patrols) {
         this.patrols = patrols;
-        this.gone = gone;
     }
 
     public void addScout(Scout scout){
@@ -90,18 +141,6 @@ public class Department {
                 SpecialityDao specialityDao = database.specialityDao();
                 specialityDao.reset(specialityDao.findByScoutId(scoutId));
                 database.scoutDao().delete(scout);
-                return;
-            }
-        }
-    }
-
-    public void setGone(Scout scout) {
-        gone.add(scout);
-        String patrolName = scout.getPatrol();
-        for (Iterator<Patrol> iterator = patrols.iterator(); iterator.hasNext();) {
-            Patrol patrol = iterator.next();
-            if (patrol.getName().equals(patrolName)){
-                patrol.removePatroller(scout);
                 return;
             }
         }

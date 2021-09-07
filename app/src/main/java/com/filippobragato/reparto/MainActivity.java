@@ -24,11 +24,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.filippobragato.reparto.RecViewAdapter.PatrolRecViewAdapter;
 import com.filippobragato.reparto.backend.Department;
+import com.filippobragato.reparto.backend.FirstClass;
+import com.filippobragato.reparto.backend.Note;
+import com.filippobragato.reparto.backend.Patrol;
+import com.filippobragato.reparto.backend.Promise;
+import com.filippobragato.reparto.backend.Score;
 import com.filippobragato.reparto.backend.Scout;
+import com.filippobragato.reparto.backend.SecondClass;
 import com.filippobragato.reparto.database.RoomDB;
 import com.filippobragato.reparto.database.ScoutDao;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.gson.Gson;
 
 import java.util.Objects;
@@ -152,14 +159,46 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.share_menu) {
+            Department d = new Department(database.scoutDao().getAll(), database.promiseDao().getAll(),
+                    database.secondDao().getAll(), database.firstDao().getAll(), database.noteDao().getAll(),
+                    database.scoreDao().getAll());
             Intent sendIntent = new Intent();
             sendIntent.setAction(Intent.ACTION_SEND);
-            sendIntent.putExtra(Intent.EXTRA_TEXT, new Gson().toJson(department));
+            sendIntent.putExtra(Intent.EXTRA_TEXT, new Gson().toJson(d));
             sendIntent.setType("text/plain");
 
             Intent shareIntent = Intent.createChooser(sendIntent, null);
             startActivity(shareIntent);
             return super.onOptionsItemSelected(item);
+        }
+        if (id == R.id.import_menu){
+            EditText editText = new EditText(this);
+            androidx.appcompat.app.AlertDialog dialog = new androidx.appcompat.app.AlertDialog.Builder(this)
+                    .setTitle("Import")
+                    .setView(editText)
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Department d = new Gson().fromJson(editText.getText().toString(), Department.class);
+                            for (Patrol patrol:d.getPatrols()) {
+                                for(Scout scout:patrol.getPatrollers())
+                                    database.scoutDao().insert(scout);
+                            }
+                            for(Promise promise: d.getPromises())
+                                database.promiseDao().insert(promise);
+                            for(SecondClass secondClass: d.getSecondClasses())
+                                database.secondDao().insert(secondClass);
+                            for(FirstClass firstClass: d.getFirstClasses())
+                                database.firstDao().insert(firstClass);
+                            for(Note note: d.getNotes())
+                                database.noteDao().insert(note);
+                            for(Score score: d.getScores())
+                                database.scoreDao().insert(score);
+                        }
+                    })
+                    .setNegativeButton(android.R.string.no, null)
+                    .create();
+            dialog.show();
         }
         if (id == R.id.delete_menu) {
             new AlertDialog.Builder(this)
@@ -183,7 +222,7 @@ public class MainActivity extends AppCompatActivity {
             return super.onOptionsItemSelected(item);
         }
         if(id == R.id.gone_menu) {
-            department.setGone(selectedScout);
+            //todo
             database.scoutDao().updateGone(selectedScout.getId(), true);
             Objects.requireNonNull(patrolsRecView.getAdapter()).notifyDataSetChanged();
             invalidateOptionsMenu();
