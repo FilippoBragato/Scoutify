@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.application'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -13,7 +14,7 @@ android {
 
     defaultConfig {
         applicationId "com.filippobragato.reparto"
-        minSdkVersion 16
+        minSdkVersion 18
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -45,6 +46,13 @@ repositories {
 }
 
 dependencies {
+    //firebase
+    implementation platform('com.google.firebase:firebase-bom:28.4.0')
+    implementation 'com.google.firebase:firebase-analytics'
+    // Declare the dependency for the Cloud Firestore library
+    implementation 'com.google.firebase:firebase-firestore'
+    //UI Auth
+    implementation 'com.firebaseui:firebase-ui-auth:7.2.0'
     //image cropper
     implementation 'com.github.CanHub:Android-Image-Cropper:3.2.2'
 

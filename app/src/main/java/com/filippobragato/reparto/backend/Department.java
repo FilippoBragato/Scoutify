@@ -1,14 +1,6 @@
 package com.filippobragato.reparto.backend;
 
-import android.os.Build;
-
-import androidx.annotation.RequiresApi;
-
-import com.filippobragato.reparto.database.NoteDao;
-import com.filippobragato.reparto.database.PromiseDao;
 import com.filippobragato.reparto.database.RoomDB;
-import com.filippobragato.reparto.database.SecondDao;
-import com.filippobragato.reparto.database.SpecialityDao;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -126,21 +118,13 @@ public class Department {
         }
     }
 
-    public void removeScout(Scout scout, RoomDB database) {
+    public void removeScout(Scout scout) {
         String patrolName = scout.getPatrol();
         int scoutId = scout.getId();
         for (Iterator<Patrol> iterator = patrols.iterator(); iterator.hasNext();) {
             Patrol patrol = iterator.next();
             if (patrol.getName().equals(patrolName)){
                 patrol.removePatroller(scout);
-                database.promiseDao().delete(scout.getProgression().getPromise());
-                database.secondDao().delete(scout.getProgression().getSecondClass());
-                database.firstDao().delete(scout.getProgression().getFirstClass());
-                NoteDao noteDao = database.noteDao();
-                noteDao.reset(noteDao.getNotesOf(scoutId));
-                SpecialityDao specialityDao = database.specialityDao();
-                specialityDao.reset(specialityDao.findByScoutId(scoutId));
-                database.scoutDao().delete(scout);
                 return;
             }
         }

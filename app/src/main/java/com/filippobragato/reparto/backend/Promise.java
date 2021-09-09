@@ -3,13 +3,11 @@ package com.filippobragato.reparto.backend;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
 import java.sql.Struct;
 
-@Entity(tableName = "promise_scout_table")
-public class Promise {
+public class Promise implements Serializable{
 
-    @PrimaryKey
-    private int scout_ID;
     private boolean test0 = false;
     private boolean test1 = false;
     private boolean test2 = false;
@@ -22,30 +20,7 @@ public class Promise {
     private boolean test9 = false;
 
 
-    public Promise(int scout_ID) {
-        this.scout_ID = scout_ID;
-    }
-
-    public Promise(int scoutId, boolean test0, boolean test1, boolean test2, boolean test3, boolean test4, boolean test5, boolean test6, boolean test7, boolean test8, boolean test9) {
-        this.scout_ID = scoutId;
-        this.test0 = test0;
-        this.test1 = test1;
-        this.test2 = test2;
-        this.test3 = test3;
-        this.test4 = test4;
-        this.test5 = test5;
-        this.test6 = test6;
-        this.test7 = test7;
-        this.test8 = test8;
-        this.test9 = test9;
-    }
-
-    public int getScout_ID() {
-        return scout_ID;
-    }
-
-    public void setScout_ID(int scoutId) {
-        this.scout_ID = scoutId;
+    public Promise() {
     }
 
     public boolean getTest0() {

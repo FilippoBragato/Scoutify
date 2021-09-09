@@ -25,8 +25,8 @@ public interface ScoutDao {
     @Query("SELECT * FROM scout_table WHERE id is :sID")
     Scout findByScoutId(int sID);
 
-    @Query("SELECT id FROM scout_table WHERE name = :sName AND patrol = :sPatrol AND role = :sRole AND  birthDay = :sDate ")
-    int getId(String sName, String sPatrol, String sRole, @TypeConverters(DateConverter.class) Date sDate);
+    @Query("SELECT id FROM scout_table WHERE name = :sName AND patrol = :sPatrol AND role = :sRole")
+    int getId(String sName, String sPatrol, String sRole);
 
     //Updates
     @Query("UPDATE scout_table SET name = :sName WHERE ID = :sID")
@@ -37,9 +37,6 @@ public interface ScoutDao {
 
     @Query("UPDATE scout_table SET role = :sRole WHERE ID = :sID")
     void updateRole(int sID, String sRole);
-
-    @Query("UPDATE scout_table SET birthDay = :sDate WHERE ID = :sID")
-    void updateBirthday(int sID,@TypeConverters(DateConverter.class) Date sDate);
 
     @Query("UPDATE scout_table SET imageUri = :sImage WHERE ID = :sID")
     void updateImage(int sID, String sImage);

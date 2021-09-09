@@ -4,6 +4,7 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.cardview.widget.CardView;
@@ -40,16 +41,25 @@ import com.filippobragato.reparto.backend.Scout;
 import com.filippobragato.reparto.backend.SecondClass;
 import com.filippobragato.reparto.database.RoomDB;
 import com.filippobragato.reparto.database.ScoutDao;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Objects;
 
 public class AddScoutActivity extends AppCompatActivity {
 
@@ -69,12 +79,48 @@ public class AddScoutActivity extends AppCompatActivity {
 
     private boolean editMode;
     private Scout editScout;
+    private DocumentReference docSummary;
+    private DocumentReference docScout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_scout);
         initializeFields();
+
+
+        if(editMode){
+            ViewGroup parent = (ViewGroup) verticalProgression.getParent();
+            if(parent != null) parent.removeView(verticalProgression);
+            TextInputLayout verticalContainer = findViewById(R.id.addScoutVerticalProgressionSpinnerContainer);
+            parent = (ViewGroup) verticalContainer.getParent();
+            if(parent != null) parent.removeView(verticalContainer);
+            docScout.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if(task.isSuccessful()){
+                        DocumentSnapshot documentSnapshot = task.getResult();
+                        if(documentSnapshot.exists()){
+                            editScout = documentSnapshot.toObject(Scout.class);
+                            role.setText(editScout.getRole(), false);
+                            patrol.setText(editScout.getPatrol(),false);
+                            name.getEditText().setText(editScout.getName());
+                            calendar.setTime(editScout.getBirthDay());
+                            updateLabel();
+                            editScout.setImageUri(database.scoutDao().findByScoutId(editScout.getId()).getImageUri());
+                            if(editScout.getImageUri()!=null)
+                                Glide.with(AddScoutActivity.this).load(editScout.getImageUri()).into(imageView);
+                        }
+                    }
+                }
+            });
+        }
+        else {
+            ArrayAdapter<CharSequence> adapterProgression = ArrayAdapter.createFromResource(this,
+                    R.array.progressionArray, android.R.layout.simple_spinner_dropdown_item);
+            adapterProgression.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            verticalProgression.setAdapter(adapterProgression);
+        }
         ArrayAdapter<CharSequence> adapterRole = ArrayAdapter.createFromResource(this,
                 R.array.roleInPatrol, android.R.layout.simple_spinner_dropdown_item);
         adapterRole.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -85,29 +131,6 @@ public class AddScoutActivity extends AppCompatActivity {
         adapterPatrol.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         patrol.setAdapter(adapterPatrol);
 
-        if(editMode){
-            ViewGroup parent = (ViewGroup) verticalProgression.getParent();
-            if(parent != null) parent.removeView(verticalProgression);
-            TextInputLayout verticalContainer = findViewById(R.id.addScoutVerticalProgressionSpinnerContainer);
-            parent = (ViewGroup) verticalContainer.getParent();
-            if(parent != null) parent.removeView(verticalContainer);
-            role.setText(editScout.getRole());
-            patrol.setText(editScout.getPatrol());
-            name.getEditText().setText(editScout.getName());
-            calendar.setTime(editScout.getBirthDay());
-            updateLabel();
-            if(editScout.getImageUri()!=null)
-                Glide.with(this).load(editScout.getImageUri()).into(imageView);
-
-        }
-        else {
-            ArrayAdapter<CharSequence> adapterProgression = ArrayAdapter.createFromResource(this,
-                    R.array.progressionArray, android.R.layout.simple_spinner_dropdown_item);
-            adapterProgression.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            verticalProgression.setAdapter(adapterProgression);
-        }
-
-
         DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -116,7 +139,7 @@ public class AddScoutActivity extends AppCompatActivity {
                 calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                 updateLabel();
                 if (editMode) {
-                    database.scoutDao().updateBirthday(editScout.getId(), calendar.getTime());
+                    docScout.update("birthDay", calendar.getTime());
                 }
             }
         };
@@ -149,8 +172,11 @@ public class AddScoutActivity extends AppCompatActivity {
                     newPatrolFlag = true;
                 }
                 else{
-                    if(editMode)
-                        database.scoutDao().updatePatrol(editScout.getId(),patrol.getEditableText().toString());
+                    if(editMode) {
+                        docScout.update("patrol", patrol.getEditableText().toString());
+                        docSummary.update(editScout.getId()+".patrol",patrol.getEditableText().toString());
+                        database.scoutDao().updatePatrol(editScout.getId(), patrol.getEditableText().toString());
+                    }
                     if (newPatrolFlag) {
                         getSupportFragmentManager().beginTransaction().remove(newPatrolFragment).commit();
                         newPatrolFlag = false;
@@ -177,36 +203,61 @@ public class AddScoutActivity extends AppCompatActivity {
                     }
                     database.scoutDao().insert(newScout);
                     int id = database.scoutDao().getId(newScout.getName(), newScout.getPatrol(), newScout
-                            .getRole(), newScout.getBirthDay());
-                    Promise promise = new Promise(id);
-                    SecondClass secondClass = new SecondClass(id);
-                    FirstClass firstClass = new FirstClass(id);
+                            .getRole());
+                    newScout.setId(id);
+                    int progressionStatus = 0;
                     String[] progressionArray = getResources().getStringArray(R.array.progressionArray);
+                    Progression progression = new Progression();
                     if(verticalProgression.getEditableText().toString().equals(progressionArray[3])){
-                        promise.setFinished();
-                        secondClass.setFinished();
-                        firstClass.setFinished();
+                        progressionStatus = 3;
+                        progression.getFirstClass().setFinished();
+                        progression.getSecondClass().setFinished();
+                        progression.getPromise().setFinished();
+
                     }
                     else {
                         if(verticalProgression.getEditableText().toString().equals(progressionArray[2])){
-                            promise.setFinished();
-                            secondClass.setFinished();
+                            progressionStatus = 2;
+                            progression.getSecondClass().setFinished();
+                            progression.getPromise().setFinished();
                         }
                         else
                             if(verticalProgression.getEditableText().toString().equals(progressionArray[1])){
-                                promise.setFinished();
+                                progressionStatus = 1;
+                                progression.getPromise().setFinished();
                             }
                     }
-                    database.promiseDao().insert(promise);
-                    database.secondDao().insert(secondClass);
-                    database.firstDao().insert(firstClass);
+                    newScout.setVertical(progressionStatus);
+                    FirebaseFirestore db = FirebaseFirestore.getInstance();
+                    Map<String, Object> generality = new HashMap<>();
+                    Map<String, Object> scout = new HashMap<>();
+
+                    scout.put("name", newScout.getName());
+                    scout.put("role", newScout.getRole());
+                    scout.put("patrol", newScout.getPatrol());
+                    scout.put("gone", false);
+                    generality.put(Integer.toString(newScout.getId()), scout);
+                    db.collection("lissaro").document("summary").set(generality, SetOptions.merge());
+                    db.collection("lissaro").document("summary").collection("scout").document(Integer.toString(newScout.getId())).set(newScout);
+                    db.collection("lissaro").document("summary").collection("scout").document(Integer.toString(id)).collection("extra").document("progression").set(progression);
                 }
                 else{
                     ScoutDao scoutDao = database.scoutDao();
-                    if (newPatrolFlag)
-                        scoutDao.updatePatrol(editScout.getId(), ((EditText) frameLayout.findViewById
-                                (R.id.addScoutNewPatrol)).getText().toString());
+                    if (newPatrolFlag) {
+                        scoutDao.updatePatrol(editScout.getId(), ((TextInputLayout) frameLayout.findViewById
+                                (R.id.addScoutNewPatrol)).getEditText().getText().toString());
+                        docScout.update("patrol", ((TextInputLayout) frameLayout.findViewById
+                                (R.id.addScoutNewPatrol)).getEditText().getText().toString());
+                        docSummary.update(editScout.getId()+".patrol",((TextInputLayout) frameLayout.findViewById
+                                (R.id.addScoutNewPatrol)).getEditText().getText().toString());
+
+                    }
                     scoutDao.updateName(editScout.getId(), name.getEditText().getText().toString());
+                    docScout.update("name", name.getEditText().getText().toString());
+                    docSummary.update(editScout.getId()+".name", name.getEditText().getText().toString());
+                    scoutDao.updateRole(editScout.getId(), role.getEditableText().toString());
+                    docScout.update("role", role.getEditableText().toString());
+                    docSummary.update(editScout.getId()+".role", role.getEditableText().toString());
                 }
                 finish();
             }
@@ -265,7 +316,9 @@ public class AddScoutActivity extends AppCompatActivity {
         this.imageView = findViewById(R.id.addImageLayout);
         this.editMode = getIntent().getBooleanExtra("edit_mode", false);
         if (editMode) {
-            this.editScout = database.scoutDao().findByScoutId(getIntent().getIntExtra("scout_ID", -1));
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            this.docSummary = db.collection("lissaro").document("summary");
+            this.docScout = docSummary.collection("scout").document(Integer.toString(getIntent().getIntExtra("scout_ID", -1)));
         }
     }
     private void updateLabel() {

@@ -15,43 +15,95 @@ import java.util.Date;
 import java.util.List;
 
 @Entity(tableName = "scout_table")
-public class Scout{
+public class Scout {
     // id for Room Database
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String name;
-    @TypeConverters(DateConverter.class)
+    @Ignore
     private Date birthDay;
     private String patrol;
     private String role;
     private boolean gone;
     private String imageUri;
     @Ignore
-    private Progression progression;
+    private int vertical;
     @Ignore
-    private List<Note> notes;
+    private Score score;
+    @Ignore
+    private List<String> specialities;
 
     @Ignore
-    public Scout(int id, String name, Date birthDay, String patrol, String role, boolean gone, Progression progression, List<Note> notes, String imageUri) {
+    public Scout(String name, Date birthday, String patrol, String role, String imageUri) {
+        this.name = name;
+        this.birthDay = birthday;
+        this.patrol = patrol;
+        this.role = role;
+        this.imageUri = imageUri;
+        this.specialities = new ArrayList<>();
+        this.score = new Score();
+    }
+
+    @Ignore
+    public Scout() {
+        this.specialities = new ArrayList<>();
+        this.score = new Score();
+    }
+
+    @Ignore
+    public Scout(int id, String name, Date birthDay, String patrol, String role, boolean gone, String imageUri) {
         this.id = id;
         this.name = name;
         this.birthDay = birthDay;
         this.patrol = patrol;
         this.role = role;
         this.gone = gone;
-        this.progression = progression;
-        this.notes = notes;
+        this.imageUri = imageUri;
+        this.specialities = new ArrayList<>();
+        this.score = new Score();
+    }
+
+    public Scout(int id, String name, String patrol, String role, boolean gone, String imageUri) {
+        this.id = id;
+        this.name = name;
+        this.patrol = patrol;
+        this.role = role;
+        this.gone = gone;
         this.imageUri = imageUri;
     }
 
-    public Scout(String name, Date birthDay, String patrol, String role, String imageUri) {
+    @Ignore
+    public Scout(int id, String name, String patrol, String role, boolean gone) {
+        this.id = id;
         this.name = name;
-        this.birthDay = birthDay;
         this.patrol = patrol;
         this.role = role;
-        this.imageUri = imageUri;
-        this.progression = new Progression(this.id);
-        this.notes = new ArrayList<Note>();
+        this.specialities = new ArrayList<>();
+        this.score = new Score();
+    }
+
+    public int getVertical() {
+        return vertical;
+    }
+
+    public void setVertical(int vertical) {
+        this.vertical = vertical;
+    }
+
+    public Score getScore() {
+        return score;
+    }
+
+    public void setScore(Score score) {
+        this.score = score;
+    }
+
+    public List<String> getSpecialities() {
+        return specialities;
+    }
+
+    public void setSpecialities(List<String> specialities) {
+        this.specialities = specialities;
     }
 
     public String getImageUri() {
@@ -108,32 +160,5 @@ public class Scout{
 
     public void setRole(String role) {
         this.role = role;
-    }
-
-    public Progression getProgression() {
-        return progression;
-    }
-
-    public void setProgression(Progression progression) {
-        this.progression = progression;
-    }
-
-    public void addNote(@NonNull String text) {
-        if (!text.equals("")) {
-            Note note = new Note(text, this.id);
-            notes.add(note);
-        }
-    }
-
-    public List<Note> getNotes() {
-        return notes;
-    }
-
-    public void setNotes(List<Note> notes) {
-        this.notes = notes;
-    }
-
-    public boolean isAlive() {
-        return !this.gone;
     }
 }

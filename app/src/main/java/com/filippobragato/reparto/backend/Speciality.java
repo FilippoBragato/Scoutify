@@ -5,10 +5,8 @@ import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
-@Entity(tableName = "speciality_scout_table", primaryKeys = {"scout_ID", "id_name"})
 public class Speciality implements Serializable {
-    private int scout_ID;
-    private int id_name;
+    private int id;
     private boolean test0 = false;
     private boolean test1 = false;
     private boolean test2 = false;
@@ -16,37 +14,19 @@ public class Speciality implements Serializable {
     private boolean test4 = false;
     private String free;
 
-    @Ignore
-    public Speciality(int scout_ID, int id_name) {
-        this.scout_ID = scout_ID;
-        this.id_name = id_name;
+    public Speciality() {
     }
 
-    public Speciality(int scout_ID, int id_name, boolean test0, boolean test1, boolean test2, boolean test3, boolean test4, String free) {
-        this.scout_ID = scout_ID;
-        this.id_name = id_name;
-        this.test0 = test0;
-        this.test1 = test1;
-        this.test2 = test2;
-        this.test3 = test3;
-        this.test4 = test4;
-        this.free = free;
+    public Speciality(int id){
+        this.id = id;
     }
 
-    public int getScout_ID() {
-        return scout_ID;
+    public int getId() {
+        return id;
     }
 
-    public void setScout_ID(int scout_ID) {
-        this.scout_ID = scout_ID;
-    }
-
-    public int getId_name() {
-        return id_name;
-    }
-
-    public void setId_name(int id_name) {
-        this.id_name = id_name;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public boolean isTest0() {
@@ -95,5 +75,13 @@ public class Speciality implements Serializable {
 
     public void setFree(String free) {
         this.free = free;
+    }
+
+    public boolean isFinished(){
+        return test0 &&
+                test1 &&
+                test2 &&
+                test3 &&
+                test4;
     }
 }

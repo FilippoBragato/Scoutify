@@ -6,7 +6,6 @@
     tools:context=".NewPatrolFragment">
 
     <com.google.android.material.textfield.TextInputLayout
-
         android:id="@+id/addScoutNewPatrol"
         android:layout_width="170dp"
         android:layout_height="56dp"

@@ -12,6 +12,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
@@ -33,12 +35,31 @@ import com.filippobragato.reparto.backend.Scout;
 import com.filippobragato.reparto.backend.SecondClass;
 import com.filippobragato.reparto.database.RoomDB;
 import com.filippobragato.reparto.database.ScoutDao;
+import com.firebase.ui.auth.AuthUI;
+import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
+import com.firebase.ui.auth.IdpResponse;
+import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.gson.Gson;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -59,21 +80,40 @@ public class MainActivity extends AppCompatActivity {
         this.selectedCardFlag = selectedCardFlag;
     }
 
+    private void logIn(){
+        ActivityResultLauncher<Intent> signInLauncher = registerForActivityResult(
+                new FirebaseAuthUIActivityResultContract(),
+                new ActivityResultCallback<FirebaseAuthUIAuthenticationResult>() {
+                    @Override
+                    public void onActivityResult(FirebaseAuthUIAuthenticationResult result) {
+                    }
+                }
+        );
+        List<AuthUI.IdpConfig> providers = Arrays.asList(
+                new AuthUI.IdpConfig.EmailBuilder().build());
+
+        // Create and launch sign-in intent
+        Intent signInIntent = AuthUI.getInstance()
+                .createSignInIntentBuilder()
+                .setAvailableProviders(providers)
+                .setTheme(R.style.Theme_Reparto)
+                .build();
+        signInLauncher.launch(signInIntent);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_main);
+        FirebaseApp.initializeApp(this);
+        if(FirebaseAuth.getInstance().getCurrentUser() == null && savedInstanceState == null){
+            logIn();
+        }
         //TODO: fare due frammenti, uno per la pattuglia e uno per i pattuglianti da gestire entrambi con tableLayout
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
         database = RoomDB.getInstance(this);
         initializeDepartment();
-
-        //      CARD ACTIVITY PART      //
-
-        patrolsRecView = findViewById(R.id.patrolRecyclerView);
-        adapter = new PatrolRecViewAdapter(department.getPatrols(), this);
-        patrolsRecView.setAdapter(adapter);
-        patrolsRecView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
         FloatingActionButton add = findViewById(R.id.addScoutFloatingButton);
 
@@ -91,22 +131,49 @@ public class MainActivity extends AppCompatActivity {
 
     private void initializeDepartment() {
         ScoutDao scoutDao = database.scoutDao();
-        department = new Department();
-        String[] roles = getResources().getStringArray(R.array.roleInPatrol);
-        for (String role:roles){
-            for (Scout scout : scoutDao.getAllByRole(role)) {
-                if (scout.isAlive())
-                    department.addScout(scout);
+        FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+
+        firestore.collection("lissaro").document("summary").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if(document.exists()){
+                        Map<String, Object> summary = document.getData();
+                        Set<String> ids = summary.keySet();
+                        for (String string_id : ids) {
+                            int id = Integer.parseInt(string_id);
+                            Scout scout = scoutDao.findByScoutId(id);
+                            Map<String, Object> details = (Map<String, Object>) summary.get(string_id);
+                            if(scout == null) {
+                                scoutDao.insert(new Scout(id, (String) details.get("name"),(String) details.get("patrol"),(String) details.get("role"),(boolean) details.get("gone")));
+                            }
+                            else{
+                                scoutDao.updatePatrol(id,(String) details.get("patrol"));
+                                scoutDao.updateName(id, (String) details.get("name"));
+                                scoutDao.updateRole(id, (String) details.get("role"));
+                                scoutDao.updateGone(id, (boolean) details.get("gone"));
+                            }
+                        }
+                    }
+                }
+                department = new Department();
+                String[] roles = getResources().getStringArray(R.array.roleInPatrol);
+                for (String role:roles){
+                    for (Scout scout : scoutDao.getAllByRole(role)) {
+                        if (!scout.isGone())
+                            department.addScout(scout);
+                    }
+                }
+                patrolsRecView = findViewById(R.id.patrolRecyclerView);
+                adapter = new PatrolRecViewAdapter(department.getPatrols(), MainActivity.this);
+                patrolsRecView.setAdapter(adapter);
+                patrolsRecView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.VERTICAL, false));
             }
-        }
+        });
+
     }
 
-    @Override
-    protected void onRestart() {
-        initializeDepartment();
-        adapter.setPatrols(department.getPatrols());
-        super.onRestart();
-    }
 
     public void toggleSelectedModeOn(MaterialCardView v, Scout s) {
         selectedCardFlag = true;
@@ -149,57 +216,12 @@ public class MainActivity extends AppCompatActivity {
         if(selectedCardFlag) {
             inflater.inflate(R.menu.itemselected_department_menu, menu);
         }
-        else {
-            inflater.inflate(R.menu.main_department_menu, menu);
-        }
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.share_menu) {
-            Department d = new Department(database.scoutDao().getAll(), database.promiseDao().getAll(),
-                    database.secondDao().getAll(), database.firstDao().getAll(), database.noteDao().getAll(),
-                    database.scoreDao().getAll());
-            Intent sendIntent = new Intent();
-            sendIntent.setAction(Intent.ACTION_SEND);
-            sendIntent.putExtra(Intent.EXTRA_TEXT, new Gson().toJson(d));
-            sendIntent.setType("text/plain");
-
-            Intent shareIntent = Intent.createChooser(sendIntent, null);
-            startActivity(shareIntent);
-            return super.onOptionsItemSelected(item);
-        }
-        if (id == R.id.import_menu){
-            EditText editText = new EditText(this);
-            androidx.appcompat.app.AlertDialog dialog = new androidx.appcompat.app.AlertDialog.Builder(this)
-                    .setTitle("Import")
-                    .setView(editText)
-                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            Department d = new Gson().fromJson(editText.getText().toString(), Department.class);
-                            for (Patrol patrol:d.getPatrols()) {
-                                for(Scout scout:patrol.getPatrollers())
-                                    database.scoutDao().insert(scout);
-                            }
-                            for(Promise promise: d.getPromises())
-                                database.promiseDao().insert(promise);
-                            for(SecondClass secondClass: d.getSecondClasses())
-                                database.secondDao().insert(secondClass);
-                            for(FirstClass firstClass: d.getFirstClasses())
-                                database.firstDao().insert(firstClass);
-                            for(Note note: d.getNotes())
-                                database.noteDao().insert(note);
-                            for(Score score: d.getScores())
-                                database.scoreDao().insert(score);
-                        }
-                    })
-                    .setNegativeButton(android.R.string.no, null)
-                    .create();
-            dialog.show();
-        }
         if (id == R.id.delete_menu) {
             new AlertDialog.Builder(this)
                     .setTitle(getString(R.string.deleteEntry))
@@ -209,7 +231,8 @@ public class MainActivity extends AppCompatActivity {
                     // The dialog is automatically dismissed when a dialog button is clicked.
                     .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
-                            department.removeScout(selectedScout, database);
+                            department.removeScout(selectedScout);
+                            FirebaseFirestore.getInstance().collection("lissaro").document("summary").update(selectedScout.getId()+".gone", true);
                             Objects.requireNonNull(patrolsRecView.getAdapter()).notifyDataSetChanged();
                             invalidateOptionsMenu();
                             toggleSelectedModeOff();
@@ -219,14 +242,6 @@ public class MainActivity extends AppCompatActivity {
                     // A null listener allows the button to dismiss the dialog and take no further action.
                     .setNegativeButton(android.R.string.no, null)
                     .show();
-            return super.onOptionsItemSelected(item);
-        }
-        if(id == R.id.gone_menu) {
-            //todo
-            database.scoutDao().updateGone(selectedScout.getId(), true);
-            Objects.requireNonNull(patrolsRecView.getAdapter()).notifyDataSetChanged();
-            invalidateOptionsMenu();
-            toggleSelectedModeOff();
             return super.onOptionsItemSelected(item);
         }
         if(id == R.id.edit_menu) {
