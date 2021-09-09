@@ -15,27 +15,26 @@ import android.widget.CompoundButton;
 import com.filippobragato.reparto.ProgressionActivity;
 import com.filippobragato.reparto.R;
 import com.filippobragato.reparto.backend.FirstClass;
-import com.filippobragato.reparto.database.FirstDao;
 import com.filippobragato.reparto.database.RoomDB;
 import com.filippobragato.reparto.veiwModel.TestsViewModel;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class FirstClassFragment extends Fragment {
 
     private View view;
-    private TestsViewModel testsViewModel;
     private CheckBox[] checkBoxes;
-    private RoomDB database;
-    private int scoutId;
+    private int id;
+    private FirstClass firstClass;
+    private DocumentReference doc;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view =  inflater.inflate(R.layout.fragment_first_class, container, false);
-        database = RoomDB.getInstance(view.getContext());
-        scoutId = getArguments().getInt("scout_ID");
-        FirstDao firstDao = database.firstDao();
-        FirstClass firstClass = firstDao.findByFirstClassId(scoutId);
+        id = getArguments().getInt("id");
+        firstClass = (FirstClass) getArguments().getSerializable("first");
         checkBoxes[0] = view.findViewById(R.id.firstFirstTest);
         checkBoxes[1] = view.findViewById(R.id.firstSecondTest);
         checkBoxes[2] = view.findViewById(R.id.firstThirdTest);
@@ -48,19 +47,21 @@ public class FirstClassFragment extends Fragment {
         checkBoxes[9] = view.findViewById(R.id.firstTenthTest);
         checkBoxes[10] = view.findViewById(R.id.firstEleventhTest);
         checkBoxes[11] = view.findViewById(R.id.firstTwelfthTest);
-
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        doc = db.collection("lissaro").document("summary")
+                .collection("scout").document(Integer.toString(id))
+                .collection("extra").document("progression");
         if(firstClass.getTest0()) checkBoxes[0].setChecked(true);
         checkBoxes[0].setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked) {
                     firstClass.setTest0(true);
-                    firstDao.updateTest0(scoutId, true);
                 }
                 else{
                     firstClass.setTest0(false);
-                    firstDao.updateTest0(scoutId, false);
                 }
+                updateDB();
             }
         });
         if(firstClass.getTest1()) checkBoxes[1].setChecked(true);
@@ -69,12 +70,11 @@ public class FirstClassFragment extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked) {
                     firstClass.setTest1(true);
-                    firstDao.updateTest1(scoutId, true);
                 }
                 else{
                     firstClass.setTest1(false);
-                    firstDao.updateTest1(scoutId, false);
                 }
+                updateDB();
             }
         });
         if(firstClass.getTest2()) checkBoxes[2].setChecked(true);
@@ -83,12 +83,11 @@ public class FirstClassFragment extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked) {
                     firstClass.setTest2(true);
-                    firstDao.updateTest2(scoutId, true);
                 }
                 else{
                     firstClass.setTest2(false);
-                    firstDao.updateTest2(scoutId, false);
                 }
+                updateDB();
             }
         });
         if(firstClass.getTest3()) checkBoxes[3].setChecked(true);
@@ -97,12 +96,11 @@ public class FirstClassFragment extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked) {
                     firstClass.setTest3(true);
-                    firstDao.updateTest3(scoutId, true);
                 }
                 else{
                     firstClass.setTest3(false);
-                    firstDao.updateTest3(scoutId, false);
                 }
+                updateDB();
             }
         });
         if(firstClass.getTest4()) checkBoxes[4].setChecked(true);
@@ -111,12 +109,11 @@ public class FirstClassFragment extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked) {
                     firstClass.setTest4(true);
-                    firstDao.updateTest4(scoutId, true);
                 }
                 else{
                     firstClass.setTest4(false);
-                    firstDao.updateTest4(scoutId, false);
                 }
+                updateDB();
             }
         });
         if(firstClass.getTest5()) checkBoxes[5].setChecked(true);
@@ -125,12 +122,11 @@ public class FirstClassFragment extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked) {
                     firstClass.setTest5(true);
-                    firstDao.updateTest5(scoutId, true);
                 }
                 else{
                     firstClass.setTest5(false);
-                    firstDao.updateTest5(scoutId, false);
                 }
+                updateDB();
             }
         });
         if(firstClass.getTest6()) checkBoxes[6].setChecked(true);
@@ -139,12 +135,11 @@ public class FirstClassFragment extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked) {
                     firstClass.setTest6(true);
-                    firstDao.updateTest6(scoutId, true);
                 }
                 else{
                     firstClass.setTest6(false);
-                    firstDao.updateTest6(scoutId, false);
                 }
+                updateDB();
             }
         });
         if(firstClass.getTest7()) checkBoxes[7].setChecked(true);
@@ -153,12 +148,11 @@ public class FirstClassFragment extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked) {
                     firstClass.setTest7(true);
-                    firstDao.updateTest7(scoutId, true);
                 }
                 else{
                     firstClass.setTest7(false);
-                    firstDao.updateTest7(scoutId, false);
                 }
+                updateDB();
             }
         });
         if(firstClass.getTest8()) checkBoxes[8].setChecked(true);
@@ -167,12 +161,11 @@ public class FirstClassFragment extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked) {
                     firstClass.setTest8(true);
-                    firstDao.updateTest8(scoutId, true);
                 }
                 else{
                     firstClass.setTest8(false);
-                    firstDao.updateTest8(scoutId, false);
                 }
+                updateDB();
             }
         });
         if(firstClass.getTest9()) checkBoxes[9].setChecked(true);
@@ -181,12 +174,11 @@ public class FirstClassFragment extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked) {
                     firstClass.setTest9(true);
-                    firstDao.updateTest9(scoutId, true);
                 }
                 else{
                     firstClass.setTest9(false);
-                    firstDao.updateTest9(scoutId, false);
                 }
+                updateDB();
             }
         });
         if(firstClass.getTest10()) checkBoxes[10].setChecked(true);
@@ -195,12 +187,11 @@ public class FirstClassFragment extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked) {
                     firstClass.setTest10(true);
-                    firstDao.updateTest10(scoutId, true);
                 }
                 else{
                     firstClass.setTest10(false);
-                    firstDao.updateTest10(scoutId, false);
                 }
+                updateDB();
             }
         });
         if(firstClass.getTest11()) checkBoxes[11].setChecked(true);
@@ -209,18 +200,23 @@ public class FirstClassFragment extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked) {
                     firstClass.setTest11(true);
-                    firstDao.updateTest11(scoutId, true);
                 }
                 else{
                     firstClass.setTest11(false);
-                    firstDao.updateTest11(scoutId, false);
                 }
+                updateDB();
             }
         });
 
         return view;
     }
-
+    private void updateDB(){
+        if(firstClass.isFinished()){
+            FirebaseFirestore.getInstance().collection("lissaro").document("summary")
+                    .collection("scout").document(Integer.toString(id)).update("vertical", 3);
+        }
+        doc.update("firstClass", this.firstClass);
+    }
     @Override
     public void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -3,10 +3,10 @@ package com.filippobragato.reparto.backend;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "second_scout_table")
-public class SecondClass {
-    @PrimaryKey
-    private int scout_ID;
+import java.io.Serializable;
+
+public class SecondClass implements Serializable {
+
     private boolean test0 = false;
     private boolean test1 = false;
     private boolean test2 = false;
@@ -22,16 +22,7 @@ public class SecondClass {
     private boolean test12 = false;
     private String free;
 
-    public SecondClass(int scout_ID) {
-        this.scout_ID = scout_ID;
-    }
-
-    public int getScout_ID() {
-        return scout_ID;
-    }
-
-    public void setScout_ID(int scoutId) {
-        this.scout_ID = scoutId;
+    public SecondClass() {
     }
 
     public boolean getTest0() {
@@ -146,23 +137,6 @@ public class SecondClass {
         this.free = free;
     }
 
-    public SecondClass(int scoutId, boolean test0, boolean test1, boolean test2, boolean test3, boolean test4, boolean test5, boolean test6, boolean test7, boolean test8, boolean test9, boolean test10, boolean test11, boolean test12, String free) {
-        this.scout_ID = scoutId;
-        this.test0 = test0;
-        this.test1 = test1;
-        this.test2 = test2;
-        this.test3 = test3;
-        this.test4 = test4;
-        this.test5 = test5;
-        this.test6 = test6;
-        this.test7 = test7;
-        this.test8 = test8;
-        this.test9 = test9;
-        this.test10 = test10;
-        this.test11 = test11;
-        this.test12 = test12;
-        this.free = free;
-    }
     public boolean isFinished(){
         return  test0 &&
                 test1 &&

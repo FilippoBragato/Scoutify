@@ -10,6 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.filippobragato.reparto.RecViewAdapter.ClickableRecViewAdapter;
 import com.filippobragato.reparto.backend.Speciality;
 import com.filippobragato.reparto.database.RoomDB;
+import com.google.firebase.firestore.FieldPath;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
@@ -17,14 +20,12 @@ public class AddSpecialityActivity extends AppCompatActivity implements Clickabl
     private RecyclerView clickableRecView;
     private ArrayList<String> specialitiesName;
     private String[] allSpecialities;
-    private RoomDB database;
     private int scoutId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_speciality);
-        database = RoomDB.getInstance(this);
         scoutId = getIntent().getIntExtra("scout_ID", -1);
         allSpecialities = getResources().getStringArray(R.array.specialitiesName_array);
         specialitiesName = new ArrayList<>();
@@ -52,7 +53,9 @@ public class AddSpecialityActivity extends AppCompatActivity implements Clickabl
                 break;
             }
         }
-        database.specialityDao().insert(new Speciality(scoutId, out));
+        FirebaseFirestore.getInstance().collection("lissaro").document("summary")
+                .collection("scout").document(Integer.toString(scoutId))
+                .collection("extra").document("progression").update("specialities", FieldValue.arrayUnion(new Speciality(out)));
         finish();
     }
 }
